@@ -13,9 +13,9 @@ export class Triangle implements Figure {
   getArea = (): number => {
     const p = (this.a + this.b + this.c) / 2;
 
-    return Number(
-      Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c)).toFixed(2),
-    );
+    const area = Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
+
+    return Math.floor(area * 100) / 100;
   };
 
   constructor(
@@ -25,7 +25,7 @@ export class Triangle implements Figure {
     public c: number,
   ) {
     if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('length cannot be 0 or less');
+      throw new Error('length of a triangle side cannot be 0 or less');
     }
 
     const max = Math.max(a, b, c);
@@ -59,7 +59,9 @@ export class Rectangle implements Figure {
   shape: Shape = 'rectangle';
 
   getArea = (): number => {
-    return Number((this.width * this.height).toFixed(2));
+    const area = this.width * this.height;
+
+    return Math.floor(area * 100) / 100;
   };
 
   constructor(
@@ -67,12 +69,16 @@ export class Rectangle implements Figure {
     public width: number,
     public height: number,
   ) {
-    if (width <= 0 || height <= 0) {
-      throw new Error('length cannot be 0 or less');
+    if (width <= 0) {
+      throw new Error('Width cannot be 0 or less');
+    }
+
+    if (height <= 0) {
+      throw new Error('Height cannot be 0 or less');
     }
   }
 }
 
-export function getInfo(figure): string {
+export function getInfo(figure: Figure): string {
   return `A ${figure.color} ${figure.shape} - ${figure.getArea()}`;
 }
