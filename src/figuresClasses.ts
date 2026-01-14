@@ -24,8 +24,16 @@ export class Triangle implements Figure {
     public b: number,
     public c: number,
   ) {
-    if (a <= 0 || b <= 0 || c <= 0) {
-      throw new Error('length of a triangle side cannot be 0 or less');
+    if (a <= 0) {
+      throw new Error('a side cannot be 0 or less');
+    }
+
+    if (b <= 0) {
+      throw new Error('b side cannot be 0 or less');
+    }
+
+    if (c <= 0) {
+      throw new Error('c side cannot be 0 or less');
     }
 
     const max = Math.max(a, b, c);
@@ -50,7 +58,7 @@ export class Circle implements Figure {
     public radius: number,
   ) {
     if (radius <= 0) {
-      throw new Error('length cannot be 0 or less');
+      throw new Error('radius cannot be 0 or less');
     }
   }
 }
